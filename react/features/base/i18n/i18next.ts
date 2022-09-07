@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-var
-declare var APP: any;
+declare let APP: any;
 
 import COUNTRIES_RESOURCES from 'i18n-iso-countries/langs/en.json';
 import i18next from 'i18next';
@@ -35,6 +34,23 @@ const COUNTRIES = _.merge({}, COUNTRIES_RESOURCES, COUNTRIES_RESOURCES_OVERRIDES
  * @type {Array<string>}
  */
 export const LANGUAGES: Array<string> = Object.keys(LANGUAGES_RESOURCES);
+
+/**
+ * The languages for the top section of the translation language list.
+ *
+ * @public
+ * @type {Array<string>}
+ */
+export const TRANSLATION_LANGUAGES_HEAD: Array<string> = [ 'en' ];
+
+/**
+ * The languages to explude from the translation language list.
+ *
+ * @public
+ * @type {Array<string>}
+ */
+export const TRANSLATION_LANGUAGES_EXCLUDE: Array<string>
+= [ 'enGB', 'esUS', 'frCA', 'hsb', 'kab', 'ptBR', 'zhCN', 'zhTW' ];
 
 /**
  * The default language.

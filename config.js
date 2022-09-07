@@ -22,6 +22,8 @@ if (subdomain.startsWith('<!--')) {
     subdomain = '';
 }
 
+var enableJaaS = false;
+
 var config = {
     // Connection
     //
@@ -733,13 +735,13 @@ var config = {
     // Holds values related to toolbar visibility control.
     // toolbarConfig: {
     //     // Moved from interfaceConfig.INITIAL_TOOLBAR_TIMEOUT
-    //     // The initial numer of miliseconds for the toolbar buttons to be visible on screen.
+    //     // The initial number of milliseconds for the toolbar buttons to be visible on screen.
     //     initialTimeout: 20000,
     //     // Moved from interfaceConfig.TOOLBAR_TIMEOUT
-    //     // Number of miliseconds for the toolbar buttons to be visible on screen.
+    //     // Number of milliseconds for the toolbar buttons to be visible on screen.
     //     timeout: 4000,
     //     // Moved from interfaceConfig.TOOLBAR_ALWAYS_VISIBLE
-    //     // Whether toolbar should be always visible or should hide after x miliseconds.
+    //     // Whether toolbar should be always visible or should hide after x milliseconds.
     //     alwaysVisible: false,
     //     // Indicates whether the toolbar should still autohide when chat is open
     //     autoHideWhileChatIsOpen: false,
@@ -970,7 +972,7 @@ var config = {
         // rtcstatsPollInterval: 10000,
 
         // This determines if rtcstats sends the SDP to the rtcstats server or replaces
-        // all SDPs with an emtpy string instead.
+        // all SDPs with an empty string instead.
         // rtcstatsSendSdp: false,
 
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
@@ -1065,7 +1067,7 @@ var config = {
     //   maxConferenceSize: 200,
     //
     //   // The maximum number of e2e ping messages per second for the whole conference to aim for.
-    //   // This is used to contol the pacing of messages in order to reduce the load on the backend.
+    //   // This is used to control the pacing of messages in order to reduce the load on the backend.
     //   maxMessagesPerSecond: 250,
     // },
 
@@ -1287,11 +1289,6 @@ var config = {
     // {"countryCode":"US","tollFree":false,"formattedNumber":"+1 123-456-7890"}
     // dialInConfCodeUrl is the conference mapper converting a meeting id to a PIN used for dial-in
     // or the other way around (more info in resources/cloud-api.swagger)
-    //
-    // For JaaS customers the default values are:
-    // dialInNumbersUrl: 'https://conference-mapper.jitsi.net/v1/access/dids',
-    // dialInConfCodeUrl: 'https://conference-mapper.jitsi.net/v1/access',
-    //
 
     // List of undocumented settings used in jitsi-meet
     /**
@@ -1473,7 +1470,7 @@ var config = {
     //     // - chat: show the GIF as a message in chat
     //     // - all: all of the above. This is the default option
     //     displayMode: 'all',
-    //     // How long the GIF should be displayed on the tile (in miliseconds).
+    //     // How long the GIF should be displayed on the tile (in milliseconds).
     //     tileTime: 5000,
     // },
 
@@ -1483,7 +1480,7 @@ var config = {
     //      defaultLogLevel: 'trace',
     //      // Option to disable LogCollector (which stores the logs on CallStats).
     //      //disableLogCollector: true,
-    //      // Indivual loggers are customizable.
+    //      // Individual loggers are customizable.
     //      loggers: {
     //      // The following are too verbose in their logging with the default level.
     //      'modules/RTC/TraceablePeerConnection.js': 'info',
@@ -1494,3 +1491,10 @@ var config = {
     // Application logo url
     // defaultLogoUrl: 'images/watermark.svg',
 };
+
+// Set the default values for JaaS customers
+if (enableJaaS) {
+    config.dialInNumbersUrl = 'https://conference-mapper.jitsi.net/v1/access/dids';
+    config.dialInConfCodeUrl = 'https://conference-mapper.jitsi.net/v1/access';
+    config.roomPasswordNumberOfDigits = 10; // skip re-adding it (do not remove comment)
+}

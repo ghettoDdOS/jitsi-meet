@@ -1,10 +1,10 @@
 /* eslint-disable lines-around-comment */
 import { makeStyles, createStyles } from '@material-ui/core';
 import React, { useCallback } from 'react';
+import { WithTranslation } from 'react-i18next';
 import { useStore } from 'react-redux';
 
-// @ts-ignore
-import { translate } from '../../base/i18n';
+import { translate } from '../../base/i18n/functions';
 import { Theme } from '../../base/ui/types';
 // @ts-ignore
 import { setSeeWhatIsBeingShared } from '../actions.web';
@@ -67,12 +67,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 }));
 
 /**
- * Component that displays a placehoder for when the screen is shared.
+ * Component that displays a placeholder for when the screen is shared.
  * * @param {Function} t - Function which translate strings.
  *
  * @returns {ReactElement}
  */
-const ScreenSharePlaceholder: React.FC<{ t: Function }> = ({ t }) => {
+const ScreenSharePlaceholder: React.FC<WithTranslation> = ({ t }) => {
     const classes = useStyles();
     const store = useStore();
 
